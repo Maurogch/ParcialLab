@@ -26,8 +26,8 @@ import static java.util.Objects.isNull;
 public class ComentarioController {
     @Autowired
     private ComentarioRepository comentarioRepository;
-    @Value("${comentario.schedule}")
-    private Integer time;
+    /*@Value("${comentario.schedule}")
+    private Integer time;*/
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -54,8 +54,8 @@ public class ComentarioController {
         comentarioRepository.delete(comentario);
     }
 
-    @Scheduled(cron = "${comentario.schedule}") //cron, every five minutes everyday
+    /*@Scheduled(cron = "${comentario.schedule}") //cron, every five minutes everyday
     public void deleteVotes(){
         comentarioRepository.deleteComentariosOlderThanXMinutes(time);
-    }
+    }*/
 }

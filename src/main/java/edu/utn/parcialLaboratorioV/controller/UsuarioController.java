@@ -62,8 +62,8 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable("id") Integer id){
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND, String.format("Usuario no encontrado con el id: %s", id)));
+    public void update(@PathVariable("id") Integer id, Usuario usuario){
+        Usuario usuario2 = usuarioRepository.findById(id).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND, String.format("Usuario no encontrado con el id: %s", id)));
 
         usuarioRepository.save(usuario);
     }

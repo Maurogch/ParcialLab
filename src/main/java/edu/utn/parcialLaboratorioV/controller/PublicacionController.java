@@ -1,9 +1,12 @@
 package edu.utn.parcialLaboratorioV.controller;
 
 import edu.utn.parcialLaboratorioV.model.Publicacion;
+import edu.utn.parcialLaboratorioV.model.PublicationProyectionDTO;
 import edu.utn.parcialLaboratorioV.model.Usuario;
 import edu.utn.parcialLaboratorioV.repository.ComentarioRepository;
 import edu.utn.parcialLaboratorioV.repository.PublicacionRepository;
+import edu.utn.parcialLaboratorioV.repository.PublicationProyection;
+import edu.utn.parcialLaboratorioV.repository.PublicationProyectionDTORepository;
 import edu.utn.parcialLaboratorioV.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -21,7 +24,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import javax.validation.Valid;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 
@@ -34,6 +36,8 @@ public class PublicacionController {
     private ComentarioRepository comentarioRepository;
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private PublicationProyectionDTORepository publicationProyectionDTORepository;
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -59,5 +63,17 @@ public class PublicacionController {
             return ResponseEntity.ok(usuario.getPublicaciones());
         else
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(usuario.getPublicaciones());
+    }
+
+    //Punto 1 Parcial 2
+    @GetMapping("/cantComentarios")
+    public ResponseEntity<List<PublicationProyection>> getCantComentarios(){
+        return ResponseEntity.ok().body(publicacionRepository.getCantComentarios());
+    }
+
+    //Punto 2 Parcial 2
+    @GetMapping("/cantComentarios2")
+    public ResponseEntity<List<PublicationProyectionDTO>> getCantComentarios2(){
+        return ResponseEntity.ok().body(publicationProyectionDTORepository.getCantComentarios());
     }
 }

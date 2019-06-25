@@ -2,6 +2,7 @@ package edu.utn.parcialLaboratorioV.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -18,14 +19,15 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 public class Usuario {
     @Id
     @GeneratedValue
     private Integer id;
-    @NotNull
+    //@NotNull
     private String nombre;
-    @NotNull
+    //@NotNull
     private String apellido;
     private String browser;
 
